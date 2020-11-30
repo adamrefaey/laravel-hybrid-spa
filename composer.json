@@ -1,38 +1,39 @@
 {
-    "name": ":vendor_name/:package_name",
-    "description": ":package_description",
+    "name": "mustafarefaey/laravel-hybrid-architecture-response-helpers",
+    "description": "Laravel hybrid-architecture response helpers.",
     "keywords": [
-        ":vendor_name",
-        ":package_name"
+        "laravel",
+        "response",
+        "laravel-hybrid-architecture-response-helpers",
+        "mustafarefaey"
     ],
-    "homepage": "https://github.com/:vendor_name/:package_name",
+    "homepage": "https://github.com/mustafarefaey/laravel-hybrid-architecture-response-helpers",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": "https://spatie.be",
-            "role": "Developer"
+            "name": "Mustafa Refaey",
+            "email": "mustafarefaey@gmail.com",
+            "homepage": "https://www.linkedin.com/in/mustafarefaey",
+            "role": "Author"
         }
     ],
     "require": {
-        "php": "^7.4|^8.0",
-        "illuminate/contracts": "^8.0"
+        "php": "^7.3|^7.4",
+        "illuminate/contracts": "^6.0|^7.0|^8.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^6.0",
+        "orchestra/testbench": "^4.0|^5.0|^6.0",
         "phpunit/phpunit": "^9.3",
         "vimeo/psalm": "^3.11"
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\Skeleton\\": "src",
-            "Spatie\\Skeleton\\Database\\Factories\\": "database/factories"
+            "MustafaRefaey\\LaravelHybrid\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\Skeleton\\Tests\\": "tests"
+            "MustafaRefaey\\LaravelHybrid\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -46,23 +47,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Spatie\\Skeleton\\SkeletonServiceProvider"
-            ],
-            "aliases": {
-                "Skeleton": "Spatie\\Skeleton\\SkeletonFacade"
-            }
+                "MustafaRefaey\\LaravelHybrid\\LaravelHybridServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/spatie"
-        },
-        {
-            "type": "other",
-            "url": "https://spatie.be/open-source/support-us"
-        }
-    ]
+    "prefer-stable": true
 }
