@@ -64,29 +64,28 @@ class JsonResponse
     {
         $responseBody = ['status' => $status];
 
-        if (!empty($data)) {
+        if (! empty($data)) {
             $responseBody['data'] = $data;
         }
 
-        if (!empty($messages['success_messages'])) {
+        if (! empty($messages['success_messages'])) {
             $responseBody['success_messages'] = $messages['success_messages'];
         }
 
-        if (!empty($messages['error_messages'])) {
+        if (! empty($messages['error_messages'])) {
             $responseBody['error_messages'] = $messages['error_messages'];
         }
 
-        if (!empty($messages['info_messages'])) {
+        if (! empty($messages['info_messages'])) {
             $responseBody['info_messages'] = $messages['info_messages'];
         }
 
-        if (!empty($messages['warn_messages'])) {
+        if (! empty($messages['warn_messages'])) {
             $responseBody['warn_messages'] = $messages['warn_messages'];
         }
 
         return self::buildResponse($responseBody, $code);
     }
-
 
     /**
      * Build a json response with the provided body and status code,

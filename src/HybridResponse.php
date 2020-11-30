@@ -41,7 +41,7 @@ class HybridResponse
     {
         return [
             'authenticated' => auth()->check(),
-            'auth_user' => auth()->check() ? auth()->user() : null
+            'auth_user' => auth()->check() ? auth()->user() : null,
         ];
     }
 
