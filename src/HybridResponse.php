@@ -2,18 +2,16 @@
 
 namespace MustafaRefaey\LaravelHybrid;
 
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 
 /**
- * This class is used to prepare and send an HTML View response
+ * This class is used to prepare and send an HTTP response
  */
 class HybridResponse
 {
     /**
      * Make an html, or json response
-     * @return Response|View
+     * @return \Illuminate\Http\Response|\Illuminate\Contracts\View\View
      */
     public static function make(array $page_state = [])
     {
@@ -27,7 +25,7 @@ class HybridResponse
         $initial_error_messages = self::jsonEncode(session()->has('errors') ? session()->get('errors')->all() : []);
 
         return view()
-            ->make("main", compact(
+            ->make("laravel-hybrid::main", compact(
                 'page_state',
                 'shared_state',
                 'initial_success_messages',
