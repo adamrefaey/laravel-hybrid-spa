@@ -16,20 +16,20 @@ class HybridResponse
     public static function make(array $page_state = [])
     {
         if (request()->expectsJson()) {
-            return JsonResponse::success($page_state);
+            return ApiResponse::success($page_state);
         }
 
         $page_state = self::jsonEncode($page_state);
         $shared_state = self::jsonEncode(self::sharedState());
-        $initial_success_messages = self::jsonEncode(Arr::wrap(session("success", [])));
-        $initial_error_messages = self::jsonEncode(session()->has('errors') ? session()->get('errors')->all() : []);
+        $session_success_messages = self::jsonEncode(Arr::wrap(session("success", [])));
+        $session_error_messages = self::jsonEncode(session()->has('errors') ? session()->get('errors')->all() : []);
 
         return view()
             ->make("laravel-hybrid::main", compact(
                 'page_state',
                 'shared_state',
-                'initial_success_messages',
-                'initial_error_messages'
+                'session_success_messages',
+                'session_error_messages'
             ));
     }
 

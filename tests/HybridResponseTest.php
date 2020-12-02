@@ -23,7 +23,7 @@ class HybridResponseTest extends TestCase
     }
 
     /** @test */
-    public function should_return_view_response_when_view_expected()
+    public function should_return_view_response_when_json_is_not_expected()
     {
         $response = HybridResponse::make();
         // assert it is a view response
@@ -39,7 +39,7 @@ class HybridResponseTest extends TestCase
 
         $this->assertArrayHasKey("page_state", $response->getData());
         $this->assertArrayHasKey("shared_state", $response->getData());
-        $this->assertArrayHasKey("initial_success_messages", $response->getData());
-        $this->assertArrayHasKey("initial_error_messages", $response->getData());
+        $this->assertArrayHasKey("session_success_messages", $response->getData());
+        $this->assertArrayHasKey("session_error_messages", $response->getData());
     }
 }

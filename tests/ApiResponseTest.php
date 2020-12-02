@@ -3,14 +3,14 @@
 namespace MustafaRefaey\LaravelHybrid\Tests;
 
 use Illuminate\Http\Response;
-use MustafaRefaey\LaravelHybrid\JsonResponse;
+use MustafaRefaey\LaravelHybrid\ApiResponse;
 
-class JsonResponseTest extends TestCase
+class ApiResponseTest extends TestCase
 {
     /** @test */
     public function success_method_returns_json_response()
     {
-        $response = JsonResponse::success();
+        $response = ApiResponse::success();
         // assert it is a response
         $this->assertInstanceOf(Response::class, $response);
         // assert it is a json response
@@ -21,7 +21,7 @@ class JsonResponseTest extends TestCase
     /** @test */
     public function success_method_returns_response_with_status_property_true()
     {
-        $response = JsonResponse::success();
+        $response = ApiResponse::success();
         $responseDecoded = json_decode($response->content(), true);
         // assert response has status property
         $this->assertArrayHasKey('status', $responseDecoded);
@@ -33,7 +33,7 @@ class JsonResponseTest extends TestCase
     public function success_method_returns_response_with_passed_data_as_data_property()
     {
         $data = ['key' => 'value'];
-        $response = JsonResponse::success($data);
+        $response = ApiResponse::success($data);
         $responseDecoded = json_decode($response->content(), true);
         // assert response has data property
         $this->assertArrayHasKey('data', $responseDecoded);
@@ -45,7 +45,7 @@ class JsonResponseTest extends TestCase
     public function success_method_returns_response_with_passed_messages_as_success_messages_property()
     {
         $messages = ['message 1', 'message 2'];
-        $response = JsonResponse::success([], $messages);
+        $response = ApiResponse::success([], $messages);
         $responseDecoded = json_decode($response->content(), true);
         // assert response has success_messages property
         $this->assertArrayHasKey('success_messages', $responseDecoded);
@@ -56,7 +56,7 @@ class JsonResponseTest extends TestCase
     /** @test */
     public function fail_method_returns_json_response()
     {
-        $response = JsonResponse::fail();
+        $response = ApiResponse::fail();
         // assert it is a response
         $this->assertInstanceOf(Response::class, $response);
         // assert it is a json response
@@ -67,7 +67,7 @@ class JsonResponseTest extends TestCase
     /** @test */
     public function fail_method_returns_response_with_status_property_false()
     {
-        $response = JsonResponse::fail();
+        $response = ApiResponse::fail();
         $responseDecoded = json_decode($response->content(), true);
         // assert response has status property
         $this->assertArrayHasKey('status', $responseDecoded);
@@ -79,7 +79,7 @@ class JsonResponseTest extends TestCase
     public function fail_method_returns_response_with_passed_data_as_data_property()
     {
         $data = ['key' => 'value'];
-        $response = JsonResponse::fail($data);
+        $response = ApiResponse::fail($data);
         $responseDecoded = json_decode($response->content(), true);
         // assert response has data property
         $this->assertArrayHasKey('data', $responseDecoded);
@@ -91,7 +91,7 @@ class JsonResponseTest extends TestCase
     public function fail_method_returns_response_with_passed_messages_as_error_messages_property()
     {
         $messages = ['message 1', 'message 2'];
-        $response = JsonResponse::fail([], $messages);
+        $response = ApiResponse::fail([], $messages);
         $responseDecoded = json_decode($response->content(), true);
         // assert response has error_messages property
         $this->assertArrayHasKey('error_messages', $responseDecoded);
@@ -102,7 +102,7 @@ class JsonResponseTest extends TestCase
     /** @test */
     public function custom_method_returns_json_response()
     {
-        $response = JsonResponse::custom(true, 209);
+        $response = ApiResponse::custom(true, 209);
         // assert it is a response
         $this->assertInstanceOf(Response::class, $response);
         // assert it is a json response
@@ -114,7 +114,7 @@ class JsonResponseTest extends TestCase
     public function custom_method_returns_response_with_status_property_as_specified()
     {
         // test true status
-        $response = JsonResponse::custom(true, 207);
+        $response = ApiResponse::custom(true, 207);
         $responseDecoded = json_decode($response->content(), true);
         // assert response has status property
         $this->assertArrayHasKey('status', $responseDecoded);
@@ -122,7 +122,7 @@ class JsonResponseTest extends TestCase
         $this->assertTrue($responseDecoded['status']);
 
         // test false status
-        $response = JsonResponse::custom(false, 408);
+        $response = ApiResponse::custom(false, 408);
         $responseDecoded = json_decode($response->content(), true);
         // assert response has status property
         $this->assertArrayHasKey('status', $responseDecoded);
@@ -134,7 +134,7 @@ class JsonResponseTest extends TestCase
     public function custom_method_returns_response_with_passed_data_as_data_property()
     {
         $data = ['key' => 'value'];
-        $response = JsonResponse::custom(true, 201, $data);
+        $response = ApiResponse::custom(true, 201, $data);
         $responseDecoded = json_decode($response->content(), true);
         // assert response has data property
         $this->assertArrayHasKey('data', $responseDecoded);
@@ -147,7 +147,7 @@ class JsonResponseTest extends TestCase
     {
         $success_messages = ['success message 1', 'success message 2'];
         $error_messages = ['error message 1', 'error message 2'];
-        $response = JsonResponse::custom(true, 207, [], compact('success_messages', 'error_messages'));
+        $response = ApiResponse::custom(true, 207, [], compact('success_messages', 'error_messages'));
         $responseDecoded = json_decode($response->content(), true);
         // assert response has success_messages property
         $this->assertArrayHasKey('success_messages', $responseDecoded);

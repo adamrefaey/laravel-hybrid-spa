@@ -23,20 +23,24 @@
 </head>
 
 <body>
-    <!-- Vue app element -->
-    <div id="app"></div>
+    <!-- js app element -->
+    <div id="{{ config('laravel-hybrid.js-app-id') }}"></div>
 
     <!-- Initial state -->
     <script>
-        window.__SHARED_STATE__ = {!! $shared_state !!};
-        window.__PAGE_STATE__ = {!! $page_state !!};
+        @php
+            $shared_state_variable = config('laravel-hybrid.shared-state-variable');
+            $page_state_variable = config('laravel-hybrid.page-state-variable');
+            echo "window.{$shared_state_variable} = {$shared_state};";
+            echo "window.{$page_state_variable} = {$page_state};";
 
-        window.__SUCCESS_MESSAGES__ = {!! $initial_success_messages !!};
-        window.__ERROR_MESSAGES__ = {!! $initial_error_messages !!};
+            echo "window.__SESSION_SUCCESS_MESSAGES__ = {$session_success_messages};";
+            echo "window.__SESSION_ERROR_MESSAGES__ = {$session_error_messages};";
+        @endphp
     </script>
 
-    <!-- Vue app script -->
-    <script defer src="{!! config('laravel-hybrid.vue-app-url') !!}"></script>
+    <!-- js app script -->
+    <script defer src="{!! config('laravel-hybrid.js-app-url') !!}"></script>
 </body>
 
 </html>

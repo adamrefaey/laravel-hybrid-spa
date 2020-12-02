@@ -24,7 +24,8 @@ This is the contents of the published config file:
 
 ```php
 return [
-    'vue-app-url' => '',
+    'js-app-url' => '',
+    'js-app-id' => '',
     'favicons' => [
         // this is an array of arrays, to describe favicons
         // must be in this format
@@ -34,8 +35,6 @@ return [
 ```
 
 ## Usage
-
-Your Vue app should mount on an element with the selector `#app`.
 
 ```php
 $laravel-hybrid-architecture-response-helpers = new MustafaRefaey\LaravelHybrid();
