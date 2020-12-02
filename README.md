@@ -26,6 +26,8 @@ This is the contents of the published config file:
 return [
     'js-app-url' => '',
     'js-app-id' => '',
+    'shared-state-variable' => '__SHARED_STATE__',
+    'page-state-variable' => '__PAGE_STATE__',
     'favicons' => [
         // this is an array of arrays, to describe favicons
         // must be in this format
@@ -34,16 +36,75 @@ return [
 ];
 ```
 
-## Usage
+## ApiResponse
+
+Use this class in your controllers' actions to return a consistent JSON response.
 
 ```php
-$laravel-hybrid-architecture-response-helpers = new MustafaRefaey\LaravelHybrid();
-echo $laravel-hybrid-architecture-response-helpers->echoPhrase('Hello, MustafaRefaey!');
+use MustafaRefaey\LaravelHybrid\ApiResponse;
 ```
 
-This package uses `artesaos/seotools` to set meta tags in html response.
+### Success response
 
-[Please review their documentation to set meta tags](https://github.com/artesaos/seotools)
+Use `success` method When returning a successful response.
+
+```php
+return ApiResponse::success();
+```
+
+### _You can -optionally- pass it:_
+
+`data`: an array of any data, this will be json encoded.
+
+`messages`: an array of any messages, this will be json encoded.
+
+`HTTP status code`: by default this will be 200, unless you specify it.
+
+```php
+return ApiResponse::success(array $data = [], array $messages = [], int $code = 200);
+```
+
+### _The response format:_
+
+```json
+{
+    "status": true,
+    "data": [],
+    "success_messages": []
+}
+```
+
+### Fail response
+
+Use `fail` method When returning a failure response.
+
+```php
+return ApiResponse::fail();
+```
+
+### _You can -optionally- pass it:_
+
+`data`: an array of any data, this will be json encoded.
+
+`messages`: an array of any messages, this will be json encoded.
+
+`HTTP status code`: by default this will be 400, unless you specify it.
+
+```php
+return ApiResponse::fail(array $data = [], array $messages = [], int $code = 400);
+```
+
+### _The response format:_
+
+```json
+{
+    "status": false,
+    "data": [],
+    "error_messages": []
+}
+```
+
+This package uses [artesaos/seotools](https://github.com/artesaos/seotools) to set meta tags in html response. Please review their [documentation](https://github.com/artesaos/seotools) to set meta tags.
 
 ## Testing
 

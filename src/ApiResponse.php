@@ -56,7 +56,8 @@ class ApiResponse
      * @param bool $status
      * @param int $code
      * @param array $data = []
-     * @param array $messages = [] // possible keys: 'success_messages', 'error_messages', 'warn_messages'
+     * @param array $messages = [] // possible keys: 'success_messages', 'error_messages',
+     *                                                  'info_messages', 'warn_messages'
      *
      * @return Response
      */

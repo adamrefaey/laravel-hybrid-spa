@@ -10,7 +10,7 @@ use Illuminate\Support\Arr;
 class HybridResponse
 {
     /**
-     * Make an html, or json response
+     * Return a View response, or an API response
      * @return \Illuminate\Http\Response|\Illuminate\Contracts\View\View
      */
     public static function make(array $page_state = [])
