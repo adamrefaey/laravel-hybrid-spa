@@ -24,15 +24,27 @@ This is the contents of the published config file:
 
 ```php
 return [
+    'vue-app-url' => '',
+    'favicons' => [
+        // this is an array of arrays, to describe favicons
+        // must be in this format
+        // ['href' => '', 'sizes' => '', 'type' => '']
+    ],
 ];
 ```
 
 ## Usage
 
+Your Vue app should mount on an element with the selector `#app`.
+
 ```php
 $laravel-hybrid-architecture-response-helpers = new MustafaRefaey\LaravelHybrid();
 echo $laravel-hybrid-architecture-response-helpers->echoPhrase('Hello, MustafaRefaey!');
 ```
+
+This package uses `artesaos/seotools` to set meta tags in html response.
+
+[Please review their documentation to set meta tags](https://github.com/artesaos/seotools)
 
 ## Testing
 
