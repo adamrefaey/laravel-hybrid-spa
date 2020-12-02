@@ -104,6 +104,20 @@ return ApiResponse::fail(array $data = [], array $messages = [], int $code = 400
 }
 ```
 
+## HybridResponse
+
+Use this class in your controllers' actions to return an html page that loads the js app, passing it the initial page state.
+
+If the request expects JSON response, it will return the page's state in an `ApiResponse`.
+
+```php
+use MustafaRefaey\LaravelHybrid\HybridResponse;
+```
+
+```php
+return HybridResponse::make(array $page_state = []);
+```
+
 This package uses [artesaos/seotools](https://github.com/artesaos/seotools) to set meta tags in html response. Please review their [documentation](https://github.com/artesaos/seotools) to set meta tags.
 
 ## Testing
