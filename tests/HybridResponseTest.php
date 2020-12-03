@@ -71,4 +71,33 @@ class HybridResponseTest extends TestCase
         $this->assertInstanceOf(View::class, $response);
         $this->assertStringContainsString("<script src='{$jsAppUrl}'></script>", $response->render());
     }
+
+    /** @test */
+    public function should_return_view_with_page_state_variable()
+    {
+        $pageStateVariable = "__PAGE_STATE__";
+        config()->set('laravel-hybrid.page-state-variable', $pageStateVariable);
+
+        $pageState = ['key' => 'value'];
+        $response = HybridResponse::make($pageState);
+        // assert it is a view response
+        $this->assertInstanceOf(View::class, $response);
+        $this->assertStringContainsString("window.{$pageStateVariable} = " . json_encode($pageState), $response->render());
+    }
+
+    /** @test */
+    public function should_return_view_with_shared_state_variable()
+    {
+        $sharedStateVariable = "__SHARED_STATE__";
+        $sharedStateHandler = '\\MustafaRefaey\\LaravelHybrid\\SharedState';
+        config()->set('laravel-hybrid.shared-state-variable', $sharedStateVariable);
+        config()->set('shared-state-handler', $sharedStateHandler);
+
+        $response = HybridResponse::make();
+        // assert it is a view response
+        $this->assertInstanceOf(View::class, $response);
+
+        $expectedSharedState = str_replace("'", "&#39;", json_encode((new $sharedStateHandler())->getSharedState(), JSON_UNESCAPED_UNICODE));
+        $this->assertStringContainsString("window.{$sharedStateVariable} = " . $expectedSharedState, $response->render());
+    }
 }

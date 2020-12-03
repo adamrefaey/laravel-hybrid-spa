@@ -22,13 +22,13 @@
 
 <body>
     <!-- js app element -->
-    <div id='{{ config('laravel-hybrid.js-app-id') }}'></div>
+    <div id='{{ config("laravel-hybrid.js-app-id") }}'></div>
 
     <!-- Initial state -->
     <script>
         @php
-            $shared_state_variable = config('laravel-hybrid.shared-state-variable');
-            $page_state_variable = config('laravel-hybrid.page-state-variable');
+            $shared_state_variable = config("laravel-hybrid.shared-state-variable");
+            $page_state_variable = config("laravel-hybrid.page-state-variable");
 
             echo "window.{$shared_state_variable} = {$shared_state};";
             echo "window.{$page_state_variable} = {$page_state};";
@@ -39,7 +39,7 @@
     </script>
 
     <!-- js app script -->
-    <script src='{!! config('laravel-hybrid.js-app-url') !!}'></script>
+    <script src='{!! config("laravel-hybrid.js-app-url") !!}'></script>
 </body>
 
 </html>

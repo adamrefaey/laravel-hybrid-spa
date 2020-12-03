@@ -2,6 +2,7 @@
 
 namespace MustafaRefaey\LaravelHybrid;
 
+use Exception;
 use Illuminate\Support\Arr;
 
 /**
@@ -19,8 +20,18 @@ class HybridResponse
             return ApiResponse::success($pageState);
         }
 
+        // check shared state handler
+        $sharedStateHandler = config('laravel-hybrid.shared-state-handler');
+        if (!class_exists($sharedStateHandler)) {
+            throw new Exception($sharedStateHandler . ' class does not exist!');
+        }
+
+        if (!in_array(RetrievesSharedState::class, class_implements($sharedStateHandler))) {
+            throw new Exception($sharedStateHandler . ' class does not implement MustafaRefaey\\LaravelHybrid\\RetrievesSharedState');
+        }
+
+        $shared_state = self::jsonEncode((new $sharedStateHandler())->getSharedState());
         $page_state = self::jsonEncode($pageState);
-        $shared_state = self::jsonEncode(self::sharedState());
         $session_success_messages = self::jsonEncode(Arr::wrap(session("success", [])));
         $session_error_messages = self::jsonEncode(session()->has('errors') ? session()->get('errors')->all() : []);
 
@@ -31,16 +42,6 @@ class HybridResponse
                 'session_success_messages',
                 'session_error_messages'
             ));
-    }
-
-    protected static function sharedState(): array
-    {
-        return [
-            'base_url' => url(''),
-            'base_locale' => app()->getLocale(),
-            'authenticated' => auth()->check(),
-            'auth_user' => auth()->user(),
-        ];
     }
 
     private static function jsonEncode($value): string
