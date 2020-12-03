@@ -13,13 +13,13 @@ class HybridResponse
      * Return a View response, or an API response
      * @return \Illuminate\Http\Response|\Illuminate\Contracts\View\View
      */
-    public static function make(array $page_state = [])
+    public static function make(array $pageState = [])
     {
         if (request()->expectsJson()) {
-            return ApiResponse::success($page_state);
+            return ApiResponse::success($pageState);
         }
 
-        $page_state = self::jsonEncode($page_state);
+        $page_state = self::jsonEncode($pageState);
         $shared_state = self::jsonEncode(self::sharedState());
         $session_success_messages = self::jsonEncode(Arr::wrap(session("success", [])));
         $session_error_messages = self::jsonEncode(session()->has('errors') ? session()->get('errors')->all() : []);
@@ -36,6 +36,8 @@ class HybridResponse
     protected static function sharedState(): array
     {
         return [
+            'base_url' => url(''),
+            'base_locale' => app()->getLocale(),
             'authenticated' => auth()->check(),
             'auth_user' => auth()->user(),
         ];

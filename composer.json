@@ -19,6 +19,7 @@
     ],
     "require": {
         "php": "^7.3|^7.4",
+        "artesaos/seotools": "^0.19.1",
         "illuminate/contracts": "^6.0|^7.0|^8.0",
         "jaybizzle/crawler-detect": "^1.2"
     },

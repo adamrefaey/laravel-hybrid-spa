@@ -33,13 +33,42 @@ class HybridResponseTest extends TestCase
     /** @test */
     public function should_return_view_with_passed_data()
     {
-        $response = HybridResponse::make();
+        $pageState = ['key' => 'value'];
+        $response = HybridResponse::make($pageState);
         // assert it is a view response
         $this->assertInstanceOf(View::class, $response);
 
-        $this->assertArrayHasKey("page_state", $response->getData());
-        $this->assertArrayHasKey("shared_state", $response->getData());
-        $this->assertArrayHasKey("session_success_messages", $response->getData());
-        $this->assertArrayHasKey("session_error_messages", $response->getData());
+        $viewData = $response->getData();
+
+        $this->assertArrayHasKey("page_state", $viewData);
+        $this->assertEquals(json_encode($pageState), $viewData["page_state"]);
+
+        $this->assertArrayHasKey("shared_state", $viewData);
+        $this->assertArrayHasKey("session_success_messages", $viewData);
+        $this->assertArrayHasKey("session_error_messages", $viewData);
+    }
+
+    /** @test */
+    public function should_return_view_that_has_a_div_with_js_app_id_as_its_id()
+    {
+        $jsAppId = 'app';
+        config()->set('laravel-hybrid.js-app-id', $jsAppId);
+
+        $response = HybridResponse::make();
+        // assert it is a view response
+        $this->assertInstanceOf(View::class, $response);
+        $this->assertStringContainsString("<div id='{$jsAppId}'></div>", $response->render());
+    }
+
+    /** @test */
+    public function should_return_view_that_loads_js_app()
+    {
+        $jsAppUrl = url('app.js');
+        config()->set('laravel-hybrid.js-app-url', $jsAppUrl);
+
+        $response = HybridResponse::make();
+        // assert it is a view response
+        $this->assertInstanceOf(View::class, $response);
+        $this->assertStringContainsString("<script src='{$jsAppUrl}'></script>", $response->render());
     }
 }

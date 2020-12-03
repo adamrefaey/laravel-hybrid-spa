@@ -2,6 +2,7 @@
 
 namespace MustafaRefaey\LaravelHybrid\Tests;
 
+use Artesaos\SEOTools\Providers\SEOToolsServiceProvider;
 use MustafaRefaey\LaravelHybrid\LaravelHybridServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
@@ -16,6 +17,7 @@ class TestCase extends Orchestra
     {
         return [
             LaravelHybridServiceProvider::class,
+            SEOToolsServiceProvider::class
         ];
     }
 
