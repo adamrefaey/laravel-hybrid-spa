@@ -1,10 +1,10 @@
 <?php
 
-namespace MustafaRefaey\LaravelHybrid\Tests;
+namespace MustafaRefaey\LaravelHybridSpa\Tests;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Response;
-use MustafaRefaey\LaravelHybrid\HybridResponse;
+use MustafaRefaey\LaravelHybridSpa\HybridResponse;
 
 class HybridResponseTest extends TestCase
 {
@@ -52,7 +52,7 @@ class HybridResponseTest extends TestCase
     public function should_return_view_that_has_a_div_with_js_app_id_as_its_id()
     {
         $jsAppId = 'app';
-        config()->set('laravel-hybrid.js-app-id', $jsAppId);
+        config()->set('laravel-hybrid-spa.js-app-id', $jsAppId);
 
         $response = HybridResponse::make();
         // assert it is a view response
@@ -64,7 +64,7 @@ class HybridResponseTest extends TestCase
     public function should_return_view_that_loads_js_app()
     {
         $jsAppUrl = url('app.js');
-        config()->set('laravel-hybrid.js-app-url', $jsAppUrl);
+        config()->set('laravel-hybrid-spa.js-app-url', $jsAppUrl);
 
         $response = HybridResponse::make();
         // assert it is a view response
@@ -76,7 +76,7 @@ class HybridResponseTest extends TestCase
     public function should_return_view_with_page_state_variable()
     {
         $pageStateVariable = "pageState";
-        config()->set('laravel-hybrid.page-state-variable', $pageStateVariable);
+        config()->set('laravel-hybrid-spa.page-state-variable', $pageStateVariable);
 
         $pageState = ['key' => 'value'];
         $response = HybridResponse::make($pageState);
@@ -89,8 +89,8 @@ class HybridResponseTest extends TestCase
     public function should_return_view_with_shared_state_variable()
     {
         $sharedStateVariable = "sharedState";
-        $sharedStateHandler = '\\MustafaRefaey\\LaravelHybrid\\SharedStateHandler';
-        config()->set('laravel-hybrid.shared-state-variable', $sharedStateVariable);
+        $sharedStateHandler = '\\MustafaRefaey\\LaravelHybridSpa\\SharedStateHandler';
+        config()->set('laravel-hybrid-spa.shared-state-variable', $sharedStateVariable);
         config()->set('shared-state-handler', $sharedStateHandler);
 
         $response = HybridResponse::make();

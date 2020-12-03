@@ -1,9 +1,9 @@
 <?php
 
-namespace MustafaRefaey\LaravelHybrid\Tests;
+namespace MustafaRefaey\LaravelHybridSpa\Tests;
 
 use Illuminate\Http\Response;
-use MustafaRefaey\LaravelHybrid\ApiResponse;
+use MustafaRefaey\LaravelHybridSpa\ApiResponse;
 
 class ApiResponseTest extends TestCase
 {

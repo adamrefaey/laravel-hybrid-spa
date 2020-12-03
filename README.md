@@ -1,10 +1,10 @@
-# Laravel hybrid-architecture response helpers.
+# Laravel hybrid SPA response helpers.
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mustafarefaey/laravel-hybrid-spa.svg?style=flat-square)](https://packagist.org/packages/mustafarefaey/laravel-hybrid-spa)
 [![Tests](https://github.com/mustafarefaey/laravel-hybrid-spa/workflows/Tests/badge.svg?branch=master)](https://github.com/mustafarefaey/laravel-hybrid-spa/actions?query=branch%3Amaster+workflow%3ATests)
 [![Total Downloads](https://img.shields.io/packagist/dt/mustafarefaey/laravel-hybrid-spa.svg?style=flat-square)](https://packagist.org/packages/mustafarefaey/laravel-hybrid-spa)
 
-Laravel HTTP Response classes, to help you build a Hybrid SPA!
+Laravel HTTP Response classes, to help you build a hybrid SPA!
 
 ## Contents table
 
@@ -33,7 +33,7 @@ composer require mustafarefaey/laravel-hybrid-spa
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --provider="MustafaRefaey\LaravelHybrid\LaravelHybridServiceProvider" --tag="config"
+php artisan vendor:publish --provider="MustafaRefaey\LaravelHybridSpa\LaravelHybridSpaServiceProvider" --tag="config"
 ```
 
 This is the contents of the published config file:
@@ -54,9 +54,9 @@ return [
 
     /**
      * This must be a full qualified class path, that implements
-     * `MustafaRefaey\LaravelHybrid\RetrievesSharedState` interface
+     * `MustafaRefaey\LaravelHybridSpa\RetrievesSharedState` interface
      */
-    'shared-state-handler' => '\\MustafaRefaey\\LaravelHybrid\\SharedState',
+    'shared-state-handler' => '\\MustafaRefaey\\LaravelHybridSpa\\SharedState',
 
     /**
      * This is the name of the global JS variable, that will be injected with the shared state
@@ -90,7 +90,7 @@ return [
 Use this class in your controllers' actions to return a consistent JSON response.
 
 ```php
-use MustafaRefaey\LaravelHybrid\ApiResponse;
+use MustafaRefaey\LaravelHybridSpa\ApiResponse;
 ```
 
 ### **Success response**
@@ -160,7 +160,7 @@ Use this class in your controllers' actions to return an html page that loads th
 If the request expects JSON response, it will return the page's state in an `ApiResponse`.
 
 ```php
-use MustafaRefaey\LaravelHybrid\HybridResponse;
+use MustafaRefaey\LaravelHybridSpa\HybridResponse;
 ```
 
 ```php
@@ -184,7 +184,7 @@ return HybridResponse::make(array $pageState = []);
     2. **Four global JS variables**:
         1. `window.__SHARED_STATE__`: This is where the shared state is injected.
             - You can rename this variable in the config file.
-            - To control its value, You can create a class that extends the `MustafaRefaey\LaravelHybrid\RetrievesSharedState` interface,
+            - To control its value, You can create a class that extends the `MustafaRefaey\LaravelHybridSpa\RetrievesSharedState` interface,
               then update `shared-state-handler` in the config file, accordingly.
         2. `window.__PAGE_STATE__`: This is where the page state is injected.
             - You can rename this variable in the config file.

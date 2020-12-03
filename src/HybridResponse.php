@@ -1,6 +1,6 @@
 <?php
 
-namespace MustafaRefaey\LaravelHybrid;
+namespace MustafaRefaey\LaravelHybridSpa;
 
 use Exception;
 use Illuminate\Support\Arr;
@@ -21,13 +21,13 @@ class HybridResponse
         }
 
         // check shared state handler
-        $sharedStateHandler = config('laravel-hybrid.shared-state-handler');
+        $sharedStateHandler = config('laravel-hybrid-spa.shared-state-handler');
         if (! class_exists($sharedStateHandler)) {
             throw new Exception($sharedStateHandler . ' class does not exist!');
         }
 
         if (! in_array(RetrievesSharedState::class, class_implements($sharedStateHandler))) {
-            throw new Exception($sharedStateHandler . ' class does not implement MustafaRefaey\\LaravelHybrid\\RetrievesSharedState');
+            throw new Exception($sharedStateHandler . ' class does not implement MustafaRefaey\\LaravelHybridSpa\\RetrievesSharedState');
         }
 
         $shared_state = self::jsonEncode((new $sharedStateHandler())->getSharedState());
@@ -36,7 +36,7 @@ class HybridResponse
         $session_error_messages = self::jsonEncode(session()->has('errors') ? session()->get('errors')->all() : []);
 
         return view()
-            ->make("laravel-hybrid::main", compact(
+            ->make("laravel-hybrid-spa::main", compact(
                 'page_state',
                 'shared_state',
                 'session_success_messages',

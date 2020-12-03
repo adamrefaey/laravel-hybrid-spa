@@ -1,6 +1,6 @@
 {
     "name": "mustafarefaey/laravel-hybrid-spa",
-    "description": "Laravel hybrid-architecture response helpers.",
+    "description": "Laravel hybrid SPA response helpers.",
     "keywords": [
         "laravel",
         "response",
@@ -29,12 +29,12 @@
     },
     "autoload": {
         "psr-4": {
-            "MustafaRefaey\\LaravelHybrid\\": "src"
+            "MustafaRefaey\\LaravelHybridSpa\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "MustafaRefaey\\LaravelHybrid\\Tests\\": "tests"
+            "MustafaRefaey\\LaravelHybridSpa\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -48,7 +48,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "MustafaRefaey\\LaravelHybrid\\LaravelHybridServiceProvider"
+                "MustafaRefaey\\LaravelHybridSpa\\LaravelHybridSpaServiceProvider"
             ]
         }
     },

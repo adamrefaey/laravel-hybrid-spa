@@ -15,9 +15,9 @@ return [
 
     /**
      * This must be a full qualified class path, that implements
-     * `MustafaRefaey\LaravelHybrid\RetrievesSharedState` interface
+     * `MustafaRefaey\LaravelHybridSpa\RetrievesSharedState` interface
      */
-    'shared-state-handler' => '\\MustafaRefaey\\LaravelHybrid\\SharedStateHandler',
+    'shared-state-handler' => '\\MustafaRefaey\\LaravelHybridSpa\\SharedStateHandler',
 
     /**
      * This is the name of the global JS variable, that will be injected with the shared state

@@ -1,9 +1,9 @@
 <?php
 
-namespace MustafaRefaey\LaravelHybrid\Tests;
+namespace MustafaRefaey\LaravelHybridSpa\Tests;
 
 use Artesaos\SEOTools\Providers\SEOToolsServiceProvider;
-use MustafaRefaey\LaravelHybrid\LaravelHybridServiceProvider;
+use MustafaRefaey\LaravelHybridSpa\LaravelHybridSpaServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
@@ -16,7 +16,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            LaravelHybridServiceProvider::class,
+            LaravelHybridSpaServiceProvider::class,
             SEOToolsServiceProvider::class,
         ];
     }

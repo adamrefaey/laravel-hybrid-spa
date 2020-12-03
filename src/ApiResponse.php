@@ -1,6 +1,6 @@
 <?php
 
-namespace MustafaRefaey\LaravelHybrid;
+namespace MustafaRefaey\LaravelHybridSpa;
 
 use Illuminate\Http\Response;
 
