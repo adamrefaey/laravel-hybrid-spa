@@ -75,7 +75,7 @@ class HybridResponseTest extends TestCase
     /** @test */
     public function should_return_view_with_page_state_variable()
     {
-        $pageStateVariable = "__PAGE_STATE__";
+        $pageStateVariable = "pageState";
         config()->set('laravel-hybrid.page-state-variable', $pageStateVariable);
 
         $pageState = ['key' => 'value'];
@@ -88,8 +88,8 @@ class HybridResponseTest extends TestCase
     /** @test */
     public function should_return_view_with_shared_state_variable()
     {
-        $sharedStateVariable = "__SHARED_STATE__";
-        $sharedStateHandler = '\\MustafaRefaey\\LaravelHybrid\\SharedState';
+        $sharedStateVariable = "sharedState";
+        $sharedStateHandler = '\\MustafaRefaey\\LaravelHybrid\\SharedStateHandler';
         config()->set('laravel-hybrid.shared-state-variable', $sharedStateVariable);
         config()->set('shared-state-handler', $sharedStateHandler);
 

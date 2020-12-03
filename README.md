@@ -6,6 +6,22 @@
 
 Laravel HTTP Response classes, to help you build a Hybrid SPA!
 
+## Contents table
+
+-   [Installation](#installation)
+
+-   [ApiResponse](#apiresponse)
+
+    -   [Success response](#success-response)
+        -   [Success response optional parameters](#success-response-optional-parameters)
+        -   [Success response format](#success-response-format)
+    -   [Fail response](#fail-response)
+        -   [Fail response optional parameters](#fail-response-optional-parameters)
+        -   [Fail response format](#fail-response-format)
+
+-   [HybridResponse](#hybridresponse)
+    -   [HTML response content](#html-response-content)
+
 ## Installation
 
 You can install the package via composer:
@@ -24,17 +40,50 @@ This is the contents of the published config file:
 
 ```php
 return [
+    /**
+     * This should be a full HTTP/HTTPS URL to your JS app.
+     * Example: 'https://example.com/app.js'
+     */
     'js-app-url' => '',
+
+    /**
+     * This should be the ID of the element that mounts the JS app.
+     * Example: 'app'
+     */
     'js-app-id' => '',
+
+    /**
+     * This must be a full qualified class path, that implements
+     * `MustafaRefaey\LaravelHybrid\RetrievesSharedState` interface
+     */
+    'shared-state-handler' => '\\MustafaRefaey\\LaravelHybrid\\SharedState',
+
+    /**
+     * This is the name of the global JS variable, that will be injected with the shared state
+     * Example: '__SHARED_STATE__', will be exposed as `window.__SHARED_STATE__`
+     */
     'shared-state-variable' => '__SHARED_STATE__',
+
+    /**
+     * This is the name of the global JS variable, that will be injected with the page state
+     * Example: '__PAGE_STATE__', will be exposed as `window.__PAGE_STATE__`
+     */
     'page-state-variable' => '__PAGE_STATE__',
-    'favicons' => [
-        // this is an array of arrays, to describe favicons
-        // must be in this format
-        // ['href' => '', 'sizes' => '', 'type' => '']
-    ],
+
+    /**
+     * This is an array of arrays, to describe favicons
+     * Must be in this format:
+     *  [
+     *      ['href' => '', 'sizes' => '', 'type' => ''],
+     *      ['href' => '', 'sizes' => '', 'type' => ''],
+     *  ]
+     *
+     */
+    'favicons' => [],
 ];
 ```
+
+`artesaos/seotools` package is used to set meta tags. Please check their [configuration documentation](https://github.com/artesaos/seotools#4-configuration).
 
 ## ApiResponse
 
@@ -44,7 +93,7 @@ Use this class in your controllers' actions to return a consistent JSON response
 use MustafaRefaey\LaravelHybrid\ApiResponse;
 ```
 
-### Success response
+### **Success response**
 
 Use `success` method When returning a successful response.
 
@@ -52,7 +101,7 @@ Use `success` method When returning a successful response.
 return ApiResponse::success();
 ```
 
-### _You can -optionally- pass it:_
+#### **Success response optional parameters**
 
 `data`: an array of any data, this will be json encoded.
 
@@ -64,7 +113,7 @@ return ApiResponse::success();
 return ApiResponse::success(array $data = [], array $messages = [], int $code = 200);
 ```
 
-### _The response format:_
+#### **Success response format**
 
 ```json
 {
@@ -74,7 +123,7 @@ return ApiResponse::success(array $data = [], array $messages = [], int $code = 
 }
 ```
 
-### Fail response
+### **Fail response**
 
 Use `fail` method When returning a failure response.
 
@@ -82,7 +131,7 @@ Use `fail` method When returning a failure response.
 return ApiResponse::fail();
 ```
 
-### _You can -optionally- pass it:_
+#### **Fail response optional parameters**
 
 `data`: an array of any data, this will be json encoded.
 
@@ -94,7 +143,7 @@ return ApiResponse::fail();
 return ApiResponse::fail(array $data = [], array $messages = [], int $code = 400);
 ```
 
-### _The response format:_
+#### **Fail response format**
 
 ```json
 {
@@ -115,10 +164,33 @@ use MustafaRefaey\LaravelHybrid\HybridResponse;
 ```
 
 ```php
-return HybridResponse::make(array $page_state = []);
+return HybridResponse::make(array $pageState = []);
 ```
 
-This package uses [artesaos/seotools](https://github.com/artesaos/seotools) to set meta tags in html response. Please review their [documentation](https://github.com/artesaos/seotools) to set meta tags.
+### HTML response content
+
+-   Inside **head** tag:
+    1. **Usually needed meta tags**:
+        ```html
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
+        ```
+    2. **Favicons**: you can set them in the config file.
+    3. **SEO meta tags**: This package uses `artesaos/seotools` package to set meta tags. Please review their [documentation](https://github.com/artesaos/seotools#usage).
+-   Inside **body** tag:
+    1. **Div element that will mount the JS app**: you can set its ID in the config file.
+    2. **Four global JS variables**:
+        1. `window.__SHARED_STATE__`: This is where the shared state is injected.
+            - You can rename this variable in the config file.
+            - To control its value, You can create a class that extends the `MustafaRefaey\LaravelHybrid\RetrievesSharedState` interface,
+              then update `shared-state-handler` in the config file, accordingly.
+        2. `window.__PAGE_STATE__`: This is where the page state is injected.
+            - You can rename this variable in the config file.
+        3. `window.__SESSION_SUCCESS_MESSAGES__`: This is where the session success messages are injected.
+        4. `window.__SESSION_ERROR_MESSAGES__`: This is where the session error messages are injected.
+    3. **The JS app script**: you can set its URL in the config file.
 
 ## Testing
 
@@ -133,6 +205,10 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 ## Contributing
 
 Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
+
+## Credits
+
+This package uses the package [artesaos/seotools](https://github.com/artesaos/seotools) to set meta tags.
 
 ## License
 

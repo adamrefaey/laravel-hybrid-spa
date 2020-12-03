@@ -2,7 +2,7 @@
 
 namespace MustafaRefaey\LaravelHybrid;
 
-class SharedState implements RetrievesSharedState
+class SharedStateHandler implements RetrievesSharedState
 {
     public function getSharedState(): array
     {
