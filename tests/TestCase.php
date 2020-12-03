@@ -17,7 +17,7 @@ class TestCase extends Orchestra
     {
         return [
             LaravelHybridServiceProvider::class,
-            SEOToolsServiceProvider::class
+            SEOToolsServiceProvider::class,
         ];
     }
 
