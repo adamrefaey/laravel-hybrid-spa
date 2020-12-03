@@ -1,8 +1,8 @@
 # Laravel hybrid-architecture response helpers.
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/mustafarefaey/laravel-hybrid-architecture-response-helpers.svg?style=flat-square)](https://packagist.org/packages/mustafarefaey/laravel-hybrid-architecture-response-helpers)
-[![Tests](https://github.com/mustafarefaey/laravel-hybrid-architecture-response-helpers/workflows/Tests/badge.svg?branch=master)](https://github.com/mustafarefaey/laravel-hybrid-architecture-response-helpers/actions?query=branch%3Amaster+workflow%3ATests)
-[![Total Downloads](https://img.shields.io/packagist/dt/mustafarefaey/laravel-hybrid-architecture-response-helpers.svg?style=flat-square)](https://packagist.org/packages/mustafarefaey/laravel-hybrid-architecture-response-helpers)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/mustafarefaey/laravel-hybrid-spa.svg?style=flat-square)](https://packagist.org/packages/mustafarefaey/laravel-hybrid-spa)
+[![Tests](https://github.com/mustafarefaey/laravel-hybrid-spa/workflows/Tests/badge.svg?branch=master)](https://github.com/mustafarefaey/laravel-hybrid-spa/actions?query=branch%3Amaster+workflow%3ATests)
+[![Total Downloads](https://img.shields.io/packagist/dt/mustafarefaey/laravel-hybrid-spa.svg?style=flat-square)](https://packagist.org/packages/mustafarefaey/laravel-hybrid-spa)
 
 Laravel HTTP Response classes, to help you build a Hybrid SPA!
 
@@ -27,7 +27,7 @@ Laravel HTTP Response classes, to help you build a Hybrid SPA!
 You can install the package via composer:
 
 ```bash
-composer require mustafarefaey/laravel-hybrid-architecture-response-helpers
+composer require mustafarefaey/laravel-hybrid-spa
 ```
 
 You can publish the config file with:

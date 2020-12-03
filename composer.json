@@ -1,13 +1,13 @@
 {
-    "name": "mustafarefaey/laravel-hybrid-architecture-response-helpers",
+    "name": "mustafarefaey/laravel-hybrid-spa",
     "description": "Laravel hybrid-architecture response helpers.",
     "keywords": [
         "laravel",
         "response",
-        "laravel-hybrid-architecture-response-helpers",
+        "laravel-hybrid-spa",
         "mustafarefaey"
     ],
-    "homepage": "https://github.com/mustafarefaey/laravel-hybrid-architecture-response-helpers",
+    "homepage": "https://github.com/mustafarefaey/laravel-hybrid-spa",
     "license": "MIT",
     "authors": [
         {
@@ -20,8 +20,7 @@
     "require": {
         "php": "^7.3|^7.4",
         "artesaos/seotools": "^0.19.1",
-        "illuminate/contracts": "^6.0|^7.0|^8.0",
-        "jaybizzle/crawler-detect": "^1.2"
+        "illuminate/contracts": "^6.0|^7.0|^8.0"
     },
     "require-dev": {
         "orchestra/testbench": "^4.0|^5.0|^6.0",
