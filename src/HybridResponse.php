@@ -22,11 +22,11 @@ class HybridResponse
 
         // check shared state handler
         $sharedStateHandler = config('laravel-hybrid.shared-state-handler');
-        if (!class_exists($sharedStateHandler)) {
+        if (! class_exists($sharedStateHandler)) {
             throw new Exception($sharedStateHandler . ' class does not exist!');
         }
 
-        if (!in_array(RetrievesSharedState::class, class_implements($sharedStateHandler))) {
+        if (! in_array(RetrievesSharedState::class, class_implements($sharedStateHandler))) {
             throw new Exception($sharedStateHandler . ' class does not implement MustafaRefaey\\LaravelHybrid\\RetrievesSharedState');
         }
 
