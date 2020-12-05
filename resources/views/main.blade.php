@@ -31,6 +31,7 @@
 
             echo "window.{$shared_state_variable} = {$shared_state};";
             echo "window.{$page_state_variable} = {$page_state};";
+            echo "window.__SKIP_LOADING_PAGE_STATE_ONCE__ = true;";
 
             echo "window.__SESSION_SUCCESS_MESSAGES__ = {$session_success_messages};";
             echo "window.__SESSION_ERROR_MESSAGES__ = {$session_error_messages};";

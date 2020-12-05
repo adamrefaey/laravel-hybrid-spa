@@ -181,15 +181,16 @@ return HybridResponse::make(array $pageState = []);
     3. **SEO meta tags**: This package uses `artesaos/seotools` package to set meta tags. Please review their [documentation](https://github.com/artesaos/seotools#usage).
 -   Inside **body** tag:
     1. **Div element that will mount the JS app**: you can set its ID in the config file.
-    2. **Four global JS variables**:
+    2. **5 global JS variables**:
         1. `window.__SHARED_STATE__`: This is where the shared state is injected.
             - You can rename this variable in the config file.
             - To control its value, You can create a class that extends the `MustafaRefaey\LaravelHybridSpa\RetrievesSharedState` interface,
               then update `shared-state-handler` in the config file, accordingly.
         2. `window.__PAGE_STATE__`: This is where the page state is injected.
             - You can rename this variable in the config file.
-        3. `window.__SESSION_SUCCESS_MESSAGES__`: This is where the session success messages are injected.
-        4. `window.__SESSION_ERROR_MESSAGES__`: This is where the session error messages are injected.
+        3. `window.__SKIP_LOADING_PAGE_STATE_ONCE__`: This variable is used to help the JS app to skip calling the backe-end for the page state, and using `window.__PAGE_STATE__` directly. Its initial value is `true`, and you should set it to `false` once you used `window.__PAGE_STATE__`.
+        4. `window.__SESSION_SUCCESS_MESSAGES__`: This is where the session success messages are injected.
+        5. `window.__SESSION_ERROR_MESSAGES__`: This is where the session error messages are injected.
     3. **The JS app script**: you can set its URL in the config file.
 
 ## Testing
