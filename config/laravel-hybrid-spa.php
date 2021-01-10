@@ -20,6 +20,12 @@ return [
     'scripts' => [],
 
     /**
+     * This should be the direction of the html page.
+     * Example: 'ltr', OR 'rtl', OR 'auto'
+     */
+    'html-direction' => 'ltr',
+
+    /**
      * This should be the ID of the element that mounts the JS app.
      * Example: 'app'
      */

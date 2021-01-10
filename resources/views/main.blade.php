@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" dir="{{ config('laravel-hybrid-spa.html-direction') }}">
 
 <head>
     <meta charset="utf-8" />
