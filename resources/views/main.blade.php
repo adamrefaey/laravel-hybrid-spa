@@ -16,6 +16,12 @@
         }
     @endphp
 
+    @php
+        foreach (config('laravel-hybrid-spa.stylesheets') as $stylesheet) {
+            echo "<link href='{$stylesheet}' rel='stylesheet'>";
+        }
+    @endphp
+
     {!! app('seotools')->generate(true) !!}
 </head>
 

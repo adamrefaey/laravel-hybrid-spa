@@ -8,6 +8,12 @@ return [
     'js-app-url' => '',
 
     /**
+     * This should be an array of full HTTP/HTTPS URLs to your stylesheets.
+     * Example: ['https://example.com/app.css']
+     */
+    'stylesheets' => [],
+
+    /**
      * This should be the ID of the element that mounts the JS app.
      * Example: 'app'
      */
