@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-hybrid-spa` will be documented in this file
 
+## 1.0.3 - 2020-01-10
+
+-   add scripts option to config
+-   add html-direction option to config
+
 ## 1.0.2 - 2020-01-10
 
 -   add stylesheets
