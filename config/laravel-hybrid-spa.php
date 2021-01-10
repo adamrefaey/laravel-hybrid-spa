@@ -14,6 +14,12 @@ return [
     'stylesheets' => [],
 
     /**
+     * This should be an array of full HTTP/HTTPS URLs to your scripts.
+     * Example: ['https://example.com/script-x.js']
+     */
+    'scripts' => [],
+
+    /**
      * This should be the ID of the element that mounts the JS app.
      * Example: 'app'
      */

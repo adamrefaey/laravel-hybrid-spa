@@ -22,6 +22,12 @@
         }
     @endphp
 
+    @php
+        foreach (config('laravel-hybrid-spa.scripts') as $script) {
+            echo "<script src='{$script}'></script>";
+        }
+    @endphp
+
     {!! app('seotools')->generate(true) !!}
 </head>
 
